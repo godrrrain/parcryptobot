@@ -12,11 +12,12 @@ CONDITION = 0
 PEREM_SYMBOL = ''
 USER_ID = 0
 
+
 def __Init__():
     global SLOVAR_KRYPT, STRONG_KRYPT, VSEGO_USD, VSEGO_BTC, USER_ID
     print(STRONG_KRYPT)
 
-    url = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
+    url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
     parameters = {
         'symbol': STRONG_KRYPT
     }
@@ -100,8 +101,9 @@ def chit_value(message):
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
-    global CONDITION, USER_ID
+    global CONDITION, USER_ID, STRONG_KRYPT
     if message.text == "Привет":
+        STRONG_KRYPT = ''
         USER_ID = message.from_user.id
         bot.send_message(message.from_user.id, 'Введи символ крипты(etc. BTC or ETH): ')
         CONDITION = 1
